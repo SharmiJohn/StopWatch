@@ -10,7 +10,7 @@ function StopWatch2() {
         setsec(0);
     }
     const handleClick=()=>{
-        settimer((prevstate)=>!prevstate)
+        settimer((prev)=>!prev)
     }
     useEffect(()=>{
         let intervalId;
