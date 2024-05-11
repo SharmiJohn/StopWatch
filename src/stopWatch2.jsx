@@ -32,7 +32,7 @@ function StopWatch2() {
   return (
     <div>
       <h2>Stopwatch</h2>
-      <p>Timer:{formatTime(time)}</p>
+      <p>Time: {formatTime(time)}</p>
       <button onClick={() => handleClick()}>{timer ? "Stop" : "Start"}</button>
       <button onClick={() => handleReset()}>Reset</button>
     </div>
