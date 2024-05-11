@@ -16,7 +16,7 @@ function StopWatch2() {
         let intervalId;
         if(timer===true){
             intervalId=setInterval(()=>{
-                if(sec>60){
+                if(sec>59){
                   setminute((prev)=>prev+1);
                   setsec(0);
                 }
@@ -33,7 +33,7 @@ function StopWatch2() {
     },[timer,sec])
   return (
     <div><h2>Stopwatch</h2>
-    <p>Timer:{minute}:{sec>10?(sec):("0"+sec)}</p>
+    <p>Timer:{minute}:{sec>9?(sec):("0"+sec)}</p>
     <button onClick={()=>handleClick()}>{timer?"Stop":"Start"}</button>
     <button onClick={()=>handleReset()}>Reset</button></div>
   )
