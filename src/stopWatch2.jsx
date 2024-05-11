@@ -16,7 +16,7 @@ function StopWatch2() {
         let intervalId;
         if(timer===true){
             intervalId=setInterval(()=>{
-                if(sec>59){
+                if(sec>58){
                   setminute((prev)=>prev+1);
                   setsec(0);
                 }
