@@ -1,9 +1,9 @@
-import StopWatch2 from "./stopWatch2";
+import StopWatch from "./StopWatch";
 
 function App() {
   return (
     <div>
-    <StopWatch2/>
+    <StopWatch/>
     </div>
   );
 }

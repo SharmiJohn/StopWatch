@@ -1,49 +1,42 @@
-import React, { useState, useEffect } from 'react';
-const StopWatch = () => {
-	const [isRunning, setIsRunning] = useState(false);
-	const [time, setTime] = useState(0);
-	useEffect(() => {
-		let timer;
-		if (isRunning) {
-			timer = setInterval(() => {
-				setTime((prevTime) => prevTime + 1);
-			}, 1000);
-		} else {
-			clearInterval(timer);
-		}
-		return () => clearInterval(timer);
-	}, [isRunning]);
-	const handleStartStop = () => {
-		setIsRunning((prevIsRunning) => !prevIsRunning);
-	};
-	const handleReset = () => {
-		setTime(0);
-		setIsRunning(false);
-	};
-	const formatTime = (timeInSeconds) => {
-		const minutes = Math.floor(timeInSeconds / 60);
-		const seconds = timeInSeconds % 60;
-		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-	};
+import React ,{useEffect,useState}from 'react'
 
-	return (
-		<div className='p-4'>
-			
-			<h1 className='font-bold text-4xl'>Stopwatch</h1>
-			<h4 className='mt-6'>Time: {formatTime(time)}</h4>
-			<div className='mt-6'>
-				<button
-					className='px-4 py-1 bg-slate-400 rounded-md mr-2'
-					onClick={handleStartStop}>
-					{isRunning ? 'Stop' : 'Start'}
-				</button>
-				<button
-					className='px-4 py-1 bg-slate-400 rounded-md ml-2'
-					onClick={handleReset}>
-					Reset
-				</button>
-			</div>
-		</div>
-	);
-};
-export default StopWatch;
+function StopWatch() {
+    const[timer,settimer]=useState(false);
+    const[minute,setminute]=useState(0);
+    const[sec,setsec]=useState(0);
+    const handleReset=()=>{
+        settimer(false);
+        setminute(0);
+        setsec(0);
+    }
+    const handleClick=()=>{
+        settimer((prev)=>!prev)
+    }
+    useEffect(()=>{
+        let intervalId;
+        if(timer===true){
+            intervalId=setInterval(()=>{
+                if(sec>58){
+                  setminute((prev)=>prev+1);
+                  setsec(0);
+                }
+                else{
+                    setsec((prev)=>prev+1);
+                }
+            },1000)
+           
+        }
+        console.log(intervalId)
+        return()=>{
+            clearInterval(intervalId)
+        }
+    },[timer,sec])
+  return (
+    <div><h2>Stopwatch</h2>
+    <p>Time: {minute}:{sec>9?(sec):("0"+sec)}</p>
+    <button onClick={()=>handleClick()}>{timer?"Stop":"Start"}</button>
+    <button onClick={()=>handleReset()}>Reset</button></div>
+  )
+}
+
+export default StopWatch
