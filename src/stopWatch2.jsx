@@ -15,9 +15,9 @@ function StopWatch2() {
     if (timer === true) {
       intervalId = setInterval(() => {
         settime((prev) => prev + 1);
-      });
+      },1000);
     }
-    console.log(intervalId);
+   
     return () => {
       clearInterval(intervalId);
     };
